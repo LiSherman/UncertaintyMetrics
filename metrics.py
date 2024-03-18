@@ -22,7 +22,7 @@ def cal_ESCE(uncertainty,prediction,groundTruth,threshold):
     union = np.logical_or(prediction,groundTruth)
     correct = np.logical_and(np.logical_and(prediction,groundTruth),union)
     low_uncertainty = np.logical_and(uncertainty<threshold,union)
-    u_dice = np.logical_and(low_uncertainty,correct).sum()*2/(union.sum() + correct.sum())
+    u_dice = np.logical_and(low_uncertainty,groundTruth).sum()*2/(union.sum() + correct.sum())
     dice = correct.sum()*2/(union.sum()+correct.sum())
     ESCE = np.abs(u_dice-dice)
     return ESCE
